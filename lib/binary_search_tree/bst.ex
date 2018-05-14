@@ -49,7 +49,12 @@ defmodule DSAP.BinarySearchTree do
     |> List.flatten()
   end
 
-  def traverse(%BST{}, _), do: raise(ArgumentError, "traverse type is invalid!")
+  def traverse(%BST{}, _),
+    do:
+      raise(
+        ArgumentError,
+        "traverse type is invalid! It must be one of :pre_order/:in_order/:post_order."
+      )
 
   def traverse(_, _), do: raise(ArgumentError, "Not a tree!")
 
