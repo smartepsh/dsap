@@ -66,4 +66,33 @@ defmodule DSAP.BinarySearchTree do
   defp do_traverse(%BST{} = tree, :post_order) do
     [do_traverse(tree.left, :post_order), do_traverse(tree.right, :post_order), tree.value]
   end
+
+  @doc """
+  Search a value
+  """
+  def search(nil, _value), do: "Don't have this value in the tree!"
+
+  def search(%BST{value: root_value} = tree, value) when value < root_value do
+    search(tree.left, value)
+  end
+
+  def search(%BST{value: root_value} = tree, value) when value > root_value do
+    search(tree.right, value)
+  end
+
+  def search(%BST{} = tree, _value), do: tree
+
+  @doc """
+  Find minimal value
+  """
+  def min(%BST{left: nil, value: value}), do: value
+
+  def min(%BST{left: left}), do: min(left)
+
+  @doc """
+  Find max value
+  """
+  def max(%BST{right: nil, value: value}), do: value
+
+  def max(%BST{right: right}), do: max(right)
 end
